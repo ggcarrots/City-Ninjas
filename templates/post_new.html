@@ -71,21 +71,38 @@
 
 
 
+
                 <input type="hidden" id="coordinateX" name="coordinateX">
                 <input type="hidden" id="coordinateY" name="coordinateY">
 
                 <div class="panel panel-default">
 
-                    <div id="map" style="width: 600px; height: 400px"></div>
 
                     <div class="panel-heading"></div>
                     <div class="panel-body">
                         <div class="form-group">
-                            <input type="textarea" id="post_body" name="post_name" required>
+                            Idea description: <input type="textarea" id="post_body" name="post_name" required>
+                            Category: <select name="category">
+                                <option value="HC">High Curb</option>
+                                <option value="CB">Cobblestones</option>
+                                <option value="PT">Potholes</option>
+                                <option value="DT">Dangerous Turn</option>
+                                <option value="SR">Slippery Road</option>
+                                <option value="MP">Many Pedestrians</option>
+                                <option value="GS">Good Surface</option>
+                                <option value="WR">Wide Road</option>
+                                <option value="OR">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <div id="map" style="width: 600px; height: 400px"></div>
                         </div>
                     </div>
                 </div>
             </div>
+
+
+
         </div>
         <button class="btn btn-success ml-2" type="submit">Save</button>
 

@@ -21,7 +21,7 @@ class PostListView(ListView):
 
         post_list = []
         for post in HulajnogaPost.objects.all():
-            post_list.append(post.review_body[:50])
+            post_list.append(post.review_body[:20])
         context['post_list'] = post_list
         return context
 
@@ -59,7 +59,8 @@ def PostCreateView(request):
         #tutaj jest jak z posta dane wyciagnac
         # form = CreatePostForm(request.POST)
         # Blog(id=3, name='Cheddar Talk', tagline='Thoughts on cheese.')
-        post = HulajnogaPost(review_body=request.POST['post_name'], coordinateX=request.POST['coordinateX'], coordinateY=request.POST['coordinateY'])
+        post = HulajnogaPost(review_body=request.POST['post_name'], ideas_category=request.POST['category'],
+                             coordinateX=request.POST['coordinateX'], coordinateY=request.POST['coordinateY'])
         # post = HulajnogaPost.objects.create(request.POST['coordinateX'], request.POST['coordinateY'], request.POST['post_name'])
         post.save()
 
