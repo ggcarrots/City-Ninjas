@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Hulajnoga Posts
+{% endblock %}
+
+{% block content %}
+
+
+    <div class="container">
+
+{#        <div class="row">#}
+{#            <div class="span6" style="float: none; margin: 0 auto;">#}
+{#                <div class="panel panel-default">#}
+{#                    <div class="panel-heading"><strong>#}
+{#                        Search by subject name#}
+{#                    </strong></div>#}
+{#                    <div class="panel-body">#}
+{#                        <form method="GET" action="{% url  'reviews-by-subject' %}">#}
+{#                            <div class="form-group">#}
+{#                                <script>#}
+{#                                    $(function() {#}
+{#                                        var availableClasses = {{ subject_list|safe }}#}
+{#                                            $("#search_by_class").autocomplete({#}
+{#                                                source: availableClasses#}
+{#                                            });#}
+{#                                    });#}
+{#                                </script>#}
+{#                                <input name="myquery" class="form-control ui-autocomplete-input"#}
+{#                                       id="search_by_class" value="{{ request.GET.myquery }}" placeholder="subject name"#}
+{#                                       autocomplete="off">#}
+{#                                <br>#}
+{#                                <button class="btn btn-default" type="submit">#}
+{#                                    Search#}
+{#                                </button>#}
+{#                            </div>#}
+{#                        </form>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#        <br>#}
+
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th scope="col">Opis problemu</th>
+                <th scope="col">Czytaj</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for review in object_list %}
+                <tr class='clickable-row' data-href='#'>
+                    <td>{{ review.review_body }}</td>
+
+                    <td>
+                        <button type="button" class="btn btn-info" href="#">click</button>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {# .... **Now the pagination section** .... #}
+        {% if is_paginated %}
+            <div class="pagination">
+            <span class="page-links">
+                {% if page_obj.has_previous %}
+                    <a href="/all?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+                <span class="page-current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+                {% if page_obj.has_next %}
+                    <a href="/all?page={{ page_obj.next_page_number }}">next</a>
+                {% endif %}
+            </span>
+            </div>
+            <br>
+            <br>
+        {% endif %}
+
+    </div>
+
+{% endblock content %}
