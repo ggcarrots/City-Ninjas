@@ -50,11 +50,13 @@
             </thead>
             <tbody>
             {% for review in object_list %}
-                <tr class='clickable-row' data-href='#'>
+                <tr class='clickable-row' data-href='{% url 'post-detail' pk=review.id %}'>
                     <td>{{ review.review_body }}</td>
 
                     <td>
-                        <button type="button" class="btn btn-info" href="#">click</button>
+{#                        <button type="button" class="btn btn-info" href="{% url 'post-detail' pk=review.id %}">click</button>#}
+                        <button type="button" class="btn btn-info" href="{% url 'post-detail' pk=review.id %}">click</button>
+
                     </td>
                 </tr>
             {% endfor %}

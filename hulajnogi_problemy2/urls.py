@@ -23,6 +23,9 @@ urlpatterns = [
     path('index/', views.PostListView.as_view(), name='index'),
 
     path('admin/', admin.site.urls),
+    path('<int:pk>/',
+         views.PostDetailView.as_view(), name='post-detail'),
+    path('new/', views.PostCreateView, name='post-new'),
 
 
 ]

@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <style>
+
+
+    </style>
+    <script>
+        function setval(source, target){
+            document.getElementById(target.id).innerHTML = source.value + "%";
+        }
+
+    </script>
+    <script type="text/javascript">
+            // The ymaps.ready() function will be called when
+            // all the API components are loaded and the DOM tree is generated.
+            ymaps.ready(init);
+            function init(){
+                var myMap = new ymaps.Map("map", {
+                    center: [52.216505, 21.022159],
+                    zoom: 17
+                });
+                    myGeoObject = new ymaps.GeoObject({
+                    geometry: {
+                        type: "Point", // geometry type - point
+                        coordinates: [52.216518, 21.021891] // координаты точки
+                    }
+                    });
+                    // my2GeoObject = new ymaps.GeoObject({
+                    //     geometry: {
+                    //         type: "Point", // geometry type - point
+                    //         coordinates: [52.216505, 21.022159] // координаты точки
+                    //     }
+                    // });
+                // myMap.geoObjects.add(myGeoObject);
+                // myMap.geoObjects.add(my2GeoObject); // Placing a geo object on the map.
+
+                {#var mapMarker;#}
+                myMap.events.add('click', function (e) {
+                    // Getting the click coordinate
+                    var coords = e.get('coords');
+                    myGeoObject = new ymaps.GeoObject({
+                    geometry: {
+                        type: "Point", // geometry type - point
+                        coordinates: [coords[0], coords[1]] // координаты точки
+                    }
+                    });
+                    {#if (mapMarker){#}
+                    {#    mapMarker.remove();#}
+                    {#}#}
+                    myMap.geoObjects.removeAll();
+                    myMap.geoObjects.add(myGeoObject);
+                     $("#coordinateX").attr('value', coords[0]);
+                     $("#coordinateY").attr('value', coords[1]);
+
+                });
+
+            }
+        </script>
+
+    <hr>
+
+    <form action="" method="post">
+
+        <div class="row">
+
+
+            <div class="col-md-3">
+                {% csrf_token %}
+
+
+
+                <input type="hidden" id="coordinateX" name="coordinateX">
+                <input type="hidden" id="coordinateY" name="coordinateY">
+
+                <div class="panel panel-default">
+
+                    <div id="map" style="width: 600px; height: 400px"></div>
+
+                    <div class="panel-heading"></div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <input type="textarea" id="post_body" name="post_name" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-success ml-2" type="submit">Save</button>
+
+    </form>
+
+
+{% endblock %}

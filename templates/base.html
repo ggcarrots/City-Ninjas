@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit-no">
     <meta property="og:description" content="Pick your perfect subjects at knu" />
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=8cded25f-a778-40e4-887a-fa95b3a2ccd2&lang=en_US" type="text/javascript"></script>
 
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous">
@@ -33,9 +34,9 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
    <a class="navbar-brand" href="{% url 'index' %}">Hulajnogowe problemy</a>
 {#   {% if user.is_authenticated %}#}
-{#   <ul class="navbar-nav mr-auto">#}
-{#      <li class="nav-item"><a class="btn btn-light" href="{% url 'review-new' %}">+ Add Review</a></li>#}
-{#   </ul>#}
+   <ul class="navbar-nav mr-auto">
+      <li class="nav-item"><a class="btn btn-light" href="{% url 'post-new' %}">+ Dodaj problem</a></li>
+   </ul>
 {#   {% endif %}#}
    <button class="navbar-toggler" type="button" data-toggle="collapse"
       data-target="#navbarCollapse" aria-controls="navbarCollapse"

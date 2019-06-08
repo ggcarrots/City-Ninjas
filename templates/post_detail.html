@@ -1,15 +1,43 @@
 {% extends 'base.html' %}
 
 {% block content %}
+        <script type="text/javascript">
+            // The ymaps.ready() function will be called when
+            // all the API components are loaded and the DOM tree is generated.
+            ymaps.ready(init);
+            function init(){
+                var myMap = new ymaps.Map("map", {
+                    center: [{{ object.coordinateX }}, {{ object.coordinateY }}],
+                    zoom: 17
+                });
+                    myGeoObject = new ymaps.GeoObject({
+                    geometry: {
+                        type: "Point", // geometry type - point
+                        coordinates: [{{ object.coordinateX }}, {{ object.coordinateY }}] // координаты точки
+                    }
+                    });
+                myMap.geoObjects.add(myGeoObject);
+                    // my2GeoObject = new ymaps.GeoObject({
+                    //     geometry: {
+                    //         type: "Point", // geometry type - point
+                    //         coordinates: [52.216505, 21.022159] // координаты точки
+                    //     }
+                    // });
+                // myMap.geoObjects.add(myGeoObject);
+                // myMap.geoObjects.add(my2GeoObject); // Placing a geo object on the map.
+
+
+
+            }
+        </script>
+
     <div class="review-entry">
-        <h2>Course name: {{ object.course_name }}</h2>
-            <p>Review by {{ object.author }} | {{ object.date }}</p>
+        <h2>Problem dla hulajnog</h2>
+        <div id="map" style="width: 600px; height: 400px"></div>
+
+
             <p>{{ object.review_body }}</p>
     </div>
-    {% if request.user == object.author %}
-        <p><a href="{% url 'review-edit' review.pk %}">Edit</a>
-            | <a href="{% url 'review-delete' review.pk %}">Delete</a> </p>
-    {% endif %}
 
-    <p>Back to <a href="{% url 'review-list' %}">All Reviews</a>. </p>
+    <p>Back to <a href="{% url 'index' %}">Glowna strona</a>. </p>
 {% endblock content %}
