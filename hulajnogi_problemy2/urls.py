@@ -20,7 +20,7 @@ from hulajnogi_app import views
 # from .models import Professor, CourseName
 
 urlpatterns = [
-    path('index/', views.PostListView.as_view(), name='index'),
+    path('', views.PostListView.as_view(), name='index'),
 
     path('admin/', admin.site.urls),
     path('<int:pk>/',
